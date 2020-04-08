@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "root",
-  database: "employee_tracker_db",
+  database: "employee_tracker",
 });
 
 // error function
@@ -91,7 +91,7 @@ function addRole() {
     ])
     .then(function (answer) {
       connection.query(
-        `INSERT INTO role (title, department, salary) VALUES ("${answer.roleTitle}", ${roleDepartment}, ${roleSalary});`,
+        `INSERT INTO roles (title, department, salary) VALUES ("${answer.roleTitle}", ${answer.roleDepartment}, ${answer.roleSalary});`,
         function (err, data) {
           console.log("Role added");
         }
@@ -155,7 +155,7 @@ function addEmployee() {
     ])
     .then(function (answer) {
       connection.query(
-        `INSERT INTO role (title, department, salary) VALUES ("${answer.roleTitle}", ${roleDepartment}, ${roleSalary});`,
+        `INSERT INTO employee (first_name, last_name, role, department, salary) VALUES ("${answer.employeeFN}", ${answer.employeeLN}, ${answer.employeeLN}, ${answer.employeeDepartment}, ${answer.employeeSalary});`,
         function (err, data) {
           console.log("Role added");
         }
