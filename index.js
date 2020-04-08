@@ -93,7 +93,71 @@ function addRole() {
       connection.query(
         `INSERT INTO role (title, department, salary) VALUES ("${answer.roleTitle}", ${roleDepartment}, ${roleSalary});`,
         function (err, data) {
-            console.log("Role added");
+          console.log("Role added");
+        }
+      );
+      connection.end();
+    });
+}
+
+// function to add department
+function addDepartment() {
+  console.log("Adding a new department");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "departmentName",
+        message: "What is the new department called?",
+      },
+    ])
+    .then(function (answer) {
+      connection.query(
+        `INSERT INTO department (name) VALUES ("${answer.departmentName}");`,
+        function (err, data) {
+          console.log("Department added");
+        }
+      );
+      connection.end();
+    });
+}
+
+//  function to add employees
+function addEmployee() {
+  console.log("Adding a new employee");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "employeeFN",
+        message: "What is the employee's first name?",
+      },
+      {
+        type: "input",
+        name: "employeeLN",
+        message: "What is the employee's last name?",
+      },
+      {
+        type: "input",
+        name: "employeeRole",
+        message: "What is the employee's Role?",
+      },
+      {
+        type: "input",
+        name: "employeeDepartment",
+        message: "What is the employee's department?",
+      },
+      {
+        type: "input",
+        name: "employeeSalary",
+        message: "What is the employee's salary?",
+      },
+    ])
+    .then(function (answer) {
+      connection.query(
+        `INSERT INTO role (title, department, salary) VALUES ("${answer.roleTitle}", ${roleDepartment}, ${roleSalary});`,
+        function (err, data) {
+          console.log("Role added");
         }
       );
       connection.end();
