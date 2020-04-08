@@ -163,3 +163,42 @@ function addEmployee() {
       connection.end();
     });
 }
+
+// function to update roles
+function updateRole() {
+  console.log("Updating a role");
+
+  connection.query("SELECT * FROM employee;", function (err, data) {
+    console.table(data);
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "update",
+          message: "Enter the name of the employee you want to update",
+        },
+        {
+          type: "rawlist",
+          name: "info",
+          message: "What info are you updating?",
+          choices: ["first name", "last name", "role", "department", "salary"],
+        },
+        {
+          type: "input",
+          name: "updated",
+          message: "What is their new info?",
+        },
+      ])
+      .then(function (answer) {
+        let query = `UPDATE employee SET ${answer.info} = ${answer.updated} WHERE id = ${update};`;
+        console.log(query);
+        connection.query(query, function (err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Employee updated");
+          }
+        });
+      });
+  });
+}
