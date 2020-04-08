@@ -202,3 +202,28 @@ function updateRole() {
       });
   });
 }
+
+// function to view roles
+function viewRoles() {
+    console.log("You are viewing roles");
+    connection.query("SELECT role.id, title, salary, name FROM role INNER JOIN department ON role.department=department;", function (err, data){
+        console.table(data);
+    });
+    connection.end();
+}
+// function to view departments
+function viewDepartments() {
+    console.log("You are viewing dpeartments");
+    connection.query("SELECT * FROM department;", function (err, data){
+        console.table(data);
+    });
+    connection.end();
+}
+// function to view employees
+function viewRoles() {
+    console.log("You are viewing roles");
+    connection.query("SELECT employee.id, first_name, last_name, title, salary, name FROM employee INNER JOIN role ON employee.role=role INNER JOIN department ON role.department=department;", function (err, data){
+        console.table(data);
+    });
+    connection.end();
+}
